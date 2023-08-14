@@ -8,10 +8,11 @@
 ## SuperWall 點數綁定流程 (非發點app 不需要實作)
 1. 透過url scheme開啟APP並帶入綁定token (參考MainActivity.kt > onResume() 及AndroidManifest.xml)
 ```javascript
-//url scheme 格式如下
+//url scheme 參考格式如下
 <scheme>://?action=binding&token=token=<bindingToken>
 ```
 ```xml
+<!-- AndroidManifest.xml -->
 <intent-filter>
     <action android:name="android.intent.action.VIEW"/>
     <category android:name="android.intent.category.BROWSABLE"/>
