@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                 val jo =JSONObject(response.body?.string())
                 runOnUiThread {
-                    val button=findViewById<Button>(R.id.buttonSuperWall)
+                    val button=findViewById<ImageView>(R.id.imageViewSuperWall)
                     button.visibility=Button.VISIBLE
                     button.setOnClickListener {
                         //開啟任務牆

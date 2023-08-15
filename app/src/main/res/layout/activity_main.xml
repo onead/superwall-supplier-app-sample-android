@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196F3"
+    android:background="@mipmap/main"
     tools:context=".MainActivity">
 
 
@@ -12,20 +12,25 @@
         android:id="@+id/textViewInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text=""
+        android:visibility="gone"
+        />
 
-    <Button
-        android:id="@+id/buttonSuperWall"
+    <ImageView
+        android:id="@+id/imageViewSuperWall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="任務牆"
-        android:visibility="invisible" />
+        android:layout_margin="8dp"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/ic_icon"
+        android:visibility="invisible"
+        />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:alpha="0"
         android:text="登出" />
 </RelativeLayout>
