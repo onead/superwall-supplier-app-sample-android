@@ -15,6 +15,7 @@ class WebViewActivity : AppCompatActivity() {
     private fun webViewInit(url: String) {
         val webView= findViewById<WebView>(R.id.webView)
         webView.settings.javaScriptEnabled = true// 必須啟用JavaScript
+        webView.settings.domStorageEnabled = true// 必須啟用domStorage
         webView.loadUrl(url)
     }
 }
