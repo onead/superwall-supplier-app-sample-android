@@ -11,7 +11,6 @@ import android.webkit.WebView
 import android.webkit.WebView.WebViewTransport
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import java.net.URL
 
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -36,7 +35,7 @@ class WebViewActivity : AppCompatActivity() {
                 if (url.startsWith("http:") || url.startsWith("https:")) {
                     return false
                 }
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME)
                 startActivity(intent)
                 return true
             }
@@ -48,11 +47,15 @@ class WebViewActivity : AppCompatActivity() {
                 isUserGesture: Boolean,
                 resultMsg: Message
             ): Boolean {
-                var newWebView = WebView(this@WebViewActivity)
+                val newWebView = WebView(this@WebViewActivity)
                 newWebView.webViewClient = object : WebViewClient() {
                     override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                        println(url)
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        if (url.startsWith("http:") || url.startsWith("https:")) {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            startActivity(intent)
+                            return true
+                        }
+                        val intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME)
                         startActivity(intent)
                         return true
                     }
@@ -60,7 +63,7 @@ class WebViewActivity : AppCompatActivity() {
                 val transport = resultMsg.obj as WebViewTransport
                 transport.webView = newWebView
                 resultMsg.sendToTarget()
-                return true;
+                return true
             }
         }
         webView.loadUrl(url)
